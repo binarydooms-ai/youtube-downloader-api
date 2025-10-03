@@ -1,9 +1,14 @@
 import express, { type Request, Response, NextFunction } from "express";
 import cors from "cors";
 import { registerRoutes } from "./routes";
-import { log } from "./vite";
 
 const app = express();
+
+// Simple log function
+function log(message: string) {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] ${message}`);
+}
 
 // Enable CORS for frontend domain
 app.use(cors({
@@ -11,8 +16,6 @@ app.use(cors({
     'http://localhost:5000',
     'http://localhost:3000',
     'https://*.infinityfreeapp.com',
-    // Add your InfinityFree domain here
-    // 'https://yourdomain.infinityfreeapp.com'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
@@ -77,6 +80,6 @@ app.use((req, res, next) => {
     reusePort: true,
   }, () => {
     log(`API server running on port ${port}`);
-    log(`CORS enabled for origins: http://localhost:5000, https://*.infinityfreeapp.com`);
+    log(`CORS enabled for origins`);
   });
 })();
