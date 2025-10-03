@@ -4,7 +4,7 @@ import { registerRoutes } from "./routes";
 
 const app = express();
 
-// Simple log function
+// Simple log function (no vite dependency)
 function log(message: string) {
   const timestamp = new Date().toISOString();
   console.log(`[${timestamp}] ${message}`);
@@ -80,6 +80,6 @@ app.use((req, res, next) => {
     reusePort: true,
   }, () => {
     log(`API server running on port ${port}`);
-    log(`CORS enabled for origins`);
+    log(`CORS enabled for InfinityFree domains`);
   });
 })();
